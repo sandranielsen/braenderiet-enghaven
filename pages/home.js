@@ -100,33 +100,20 @@ export default class HomePage {
         `;
     }
 
-
+// appending the product previews
     appendPreviews(previews) {
-        let template = "";
+        let htmlTemplate = "";
         for (let preview of previews) {
-            template += /*html*/ `
-                <div class="preview" onclick="selectProduct('${preview.name}', '${preview.series}', '${preview.strength}', '${preview.image}', '${preview.illustration}', '${preview.description}'">
-                    <img src="${preview.image}" alt="${preview.name}">
+            htmlTemplate += /*html*/ `
+                <div class="preview" onclick="selectProduct('${preview.name}', '${preview.series}', '${preview.alcohol}', '${preview.image}', '${preview.illustration}', '${preview.description}')">
+                    <img src="${preview.image}" alt="${preview.title}">
                     <h5 class="preview_text">${preview.name}</h5>
                 </div>
                 
           `;
         }
-        document.querySelector('#product-slider').innerHTML = template;
+        document.querySelector('#product-slider').innerHTML = htmlTemplate;
     }
-
-
-    appendCategories() {
-    let htmlTemplate = "";
-    for (let category of this.categories) {
-      htmlTemplate += `
-        <option value="${category.id}">${category.name}</option>
-      `;
-    }
-
-    document.querySelector('.product_types').innerHTML += htmlTemplate;
-    }
-    
     
 }
 

@@ -2,12 +2,15 @@ import {
      firebaseDB
 } from "../services/firebase_config.js";
 
+import productService from "../services/product-service.js";
+
 let spiritsData = [];
 
 export default class ProductsPage {
-    constructor() {
-        this.spiritRef = firebaseDB.collection("spirits");
-        this.template();
+     constructor() {
+          this.spiritRef = firebaseDB.collection("spirits");
+          this.productRef = firebaseDB.collection("products");
+         this.template();
         this.read();
     }
 
@@ -20,8 +23,17 @@ export default class ProductsPage {
                     spiritsData.push(spirit);
                });
                this.appendSpirits(spiritsData);
-
           });
+
+          this.productRef.onSnapshot(snapshotData => {
+            let products = [];
+            snapshotData.forEach(doc => {
+                let product = doc.data();
+                product.id = doc.id;
+                products.push(product);
+            });
+            productService.appendProducts(products);
+        });
 
      }
 
@@ -50,7 +62,7 @@ export default class ProductsPage {
           let template = "";
           for (let spirit of spirits) {
                template += /*html*/ `
-          <article class="spirit_item" onclick="selectSpirit('${spirit.name}', '${spirit.image}'">
+          <article class="spirit_item" onclick="selectProduct('${spirit.name}', '${spirit.series}', '${spirit.alcohol}', '${spirit.image}', '${spirit.illustration}', '${spirit.description}')"">
                 <div id="spirit-content">
                 <h2 class="spirit-name">${spirit.name}</h2>
                 <button class="product_btn">Læs mere</button>

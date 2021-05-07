@@ -6,7 +6,7 @@ import AboutPage from "./pages/about.js";
 import ConceptPage from "./pages/concept.js";
 import VisitPage from "./pages/visit.js";
 import ShopPage from "./pages/shop.js";
-import DetailsPage from "./pages/product-details.js";
+import ProductDetails from "./pages/product-details.js";
 import FooterSection from "./components/footer.js";
 import spaService from "./services/spa.js";
 import productService from "./services/product-service.js";
@@ -19,7 +19,7 @@ let aboutPage = new AboutPage();
 let conceptPage = new ConceptPage();
 let visitPage = new VisitPage();
 let shopPage = new ShopPage();
-let detailsPage = new DetailsPage();
+let productDetails = new ProductDetails();
 let footerSection = new FooterSection();
 
 // init services
@@ -30,29 +30,19 @@ window.pageChange = () => spaService.pageChange();
 window.navigateTo = (pageId) => spaService.navigateTo(pageId);
 window.fixedNav = () => navigation.fixedNav();
 
-window.selectSpirit = (name, image, background) => {
-    let nameInput = document.querySelector('.spirit-name');
-    let imageInput = document.querySelector('.spirit_item"');
+window.selectProduct = (name, series, alcohol, image, illustration, description) => {
+    let nameInput = document.querySelector('.product_title');
+    let seriesInput = document.querySelector('.product_series');
+    let alcoholInput = document.querySelector('.product_strength');
+    let imageInput = document.querySelector('#image_container');
+    let illustrationInput = document.querySelector('#sketch-container');
+    let descriptionInput = document.querySelector('.product_description');
     nameInput.textContent = name;
+    seriesInput.textContent = series;
+    alcoholInput.textContent = alcohol;
     imageInput.style.backgroundImage = image;
+    illustrationInput.style.backgroundImage = illustration;
+    descriptionInput.textContent = description;
     spaService.navigateTo("product-details");
-}
-
-
-window.selectProduct = (productName, productSeries, productStrength, productImage, productIllustration, productDescription) => {
-    let productNameInput = document.querySelector('.product_name');
-    let productSeriesInput = document.querySelector('.product_titles');
-    let productStrenghtInput = document.querySelector('.product_titles');
-
-    let productImageInput = document.querySelector('#product_image');
-    let productIllustrationInput = document.querySelector('#product_illustration');
-    let productDescriptionInput = document.querySelector('.product_description');
-    productNameInput.textContent = productName;
-    productSeriesInput.textContent = productSeries;
-    productStrenghtInput.textContent = productStrength;
-    productImageInput.style.backgroundImage = productImage;
-    productIllustrationInput.style.backgroundImage = productIllustration;
-    productDescriptionInput.textContent = productDescription;
-    spaService.navigateTo("shop");
-}
+};
 
