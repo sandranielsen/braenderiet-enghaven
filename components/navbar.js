@@ -5,7 +5,7 @@ export default class NavBar {
 
     template() {
         document.querySelector("#app").innerHTML += /*html*/ `
-      <nav id="tabbar">
+      <nav class="tabbar">
           <a href="#home"><img src="./media/logo.svg" alt="logo" class="logo"></a>
            <div id="main-nav">
                     <a href="#products" class="nav_link">Produkter</a>

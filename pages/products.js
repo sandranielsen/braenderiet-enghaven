@@ -62,7 +62,7 @@ export default class ProductsPage {
           let template = "";
           for (let spirit of spirits) {
                template += /*html*/ `
-          <article class="spirit_item" onclick="selectProduct('${spirit.name}', '${spirit.series}', '${spirit.alcohol}', '${spirit.image}', '${spirit.illustration}', '${spirit.description}')"">
+          <article class="spirit_item" onclick="selectProduct('${spirit.name}', '${spirit.series}', '${spirit.alcohol}', '${spirit.notes}', '${spirit.image}', '${spirit.illustration}', '${spirit.description}')"">
                 <div id="spirit-content">
                 <h2 class="spirit-name">${spirit.name}</h2>
                 <button class="product_btn">Læs mere</button>

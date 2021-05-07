@@ -105,7 +105,7 @@ export default class HomePage {
         let htmlTemplate = "";
         for (let preview of previews) {
             htmlTemplate += /*html*/ `
-                <div class="preview" onclick="selectProduct('${preview.name}', '${preview.series}', '${preview.alcohol}', '${preview.image}', '${preview.illustration}', '${preview.description}')">
+                <div class="preview" onclick="selectProduct('${preview.name}', '${preview.series}', '${preview.alcohol}', '${preview.notes}', '${preview.image}', '${preview.illustration}', '${preview.description}')">
                     <img src="${preview.image}" alt="${preview.title}">
                     <h5 class="preview_text">${preview.name}</h5>
                 </div>
