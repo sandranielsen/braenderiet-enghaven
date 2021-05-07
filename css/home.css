@@ -1,0 +1,116 @@
+/* banner section */
+.video {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+}
+
+#banner-content-home {
+    position: absolute;
+    color: var(--white);
+    z-index: 2;
+    width: 400px;
+    bottom: 0;
+    right: 0;
+    margin: 80px;
+    text-align: right;
+}
+
+/* product overview section */
+#product-overview {
+    margin: 100px;
+    color: var(--black);
+}
+
+ul {
+    list-style-type: none;
+    font-family: bebas neue, sans-serif;
+    margin-top: 100px;
+}
+
+li {
+    margin-top: 20px;
+}
+
+.product_items {
+    text-decoration: none;
+    font-size: 18px;
+    font-family: bebas neue;
+    color: var(--black);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#product-container {
+    display: grid;
+    grid-template-columns: 10% 80%;
+    column-gap: 10%;
+}
+
+#product-slider {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    margin: 15px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.preview {
+    scroll-snap-align: center;
+    position: relative;
+    margin: 0 50px;
+}
+
+.preview img {
+    height: 400px;
+    width: auto;
+}
+
+.preview_text {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* slider styling */
+body *::-webkit-scrollbar {
+    width: 100%;
+    height: 3px;
+}
+
+body *::-webkit-scrollbar-track {
+    background: var(--grey);
+}
+
+body *::-webkit-scrollbar-thumb {
+    background-color: var(--green);
+}
+
+/* about section */
+#about-container {
+    background-color: var(--green);
+    padding: 100px;
+    display: flex;
+    align-items: center;
+    line-height: 1.25;
+}
+
+.about_img {
+    color: var(--white);
+    width: 400px;
+    margin: 0 100px 0 0;
+}
+
+#about-content {
+    color: var(--white);
+}
+
+.white_link {
+    color: var(--white);
+}
+
+.black_link {
+    color: var(--black);
+}

@@ -1,0 +1,57 @@
+#overlay-1 {
+    position: absolute;
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#article-container-1 {
+    padding: 100px;
+    display: flex;
+    line-height: 1.25;
+    color: var(--black);
+    align-items: center;
+    background-color: var(--lightgrey);
+}
+
+/* parallax effect - source: https://www.w3schools.com/howto/howto_css_parallax.asp */
+#info-container {
+    position: relative;
+    background-image: url(/media/besøg-os-2.jpg);
+    min-height: 70vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#info-content {
+    position: absolute;
+    color: var(--white);
+    z-index: 5;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 1.25;
+}
+
+.info_btn {
+    background-color: var(--green);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border: none;
+    padding: 12px;
+    margin-top: 20px;
+    width: 120px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.info_text {
+    margin: 10px 0;
+}
