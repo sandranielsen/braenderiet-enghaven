@@ -20,6 +20,10 @@
     padding: 0 20px;
 }
 
+.tabbar a.active {
+    color: var(--green);
+}
+
 #main-nav {
     list-style-type: none;
     padding: 60px;
@@ -27,8 +31,4 @@
 
 #secondary-nav {
     padding: 50px 10px;
-}
-
-.tabbar a.active {
-    color: var(--green);
 }

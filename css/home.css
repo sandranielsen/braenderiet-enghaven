@@ -78,7 +78,6 @@ li {
     scroll-snap-align: center;
     position: relative;
     margin: 0 50px;
-    cursor: pointer;
 }
 
 .preview img {

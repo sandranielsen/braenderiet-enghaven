@@ -29,7 +29,7 @@ class ProductService {
         let template = "";
         for (let product of products) {
             template += /*html*/ `
-                    <article id="spirit-products" onclick="selectProduct('${product.name}', '${product.series}', '${product.alcohol}', '${product.image}', '${product.illustration}', '${product.description}' )">
+                    <article id="spirit-products" onclick="selectProduct('${product.name}', '${product.series}', '${product.alcohol}', '${product.notes}', '${product.image}', '${product.illustration}', '${product.description}' )">
                     <div id="product-content">
                     <div id="information-container">
                     <h1 class="product_title">${product.name}</h1>
@@ -43,8 +43,8 @@ class ProductService {
                         <h1 class="product_strength">${product.alcohol}</h1>
                         </div>
                         <div id="info-element">
-                        <h5 class="info_title">Smagsnoter</h5>
-                        <div class="product_notes">${product.notes}</div>
+                        <h5 class="info_title">Smag</h5>
+                        <h3 class="product_notes">${product.notes}</h3>
                         </div>
                         </div>
                     </div>

@@ -75,8 +75,8 @@ export default class ProductDetails {
                         <h1 class="product_strength"></h1>
                         </div>
                         <div id="info-element">
-                        <h5 class="info_title"></h5>
-                        <div class="product_notes"></div>
+                        <h5 class="info_title">Smag</h5>
+                        <h3 class="product_notes"></h3>
                         </div>
                     </div>
                     </div>
