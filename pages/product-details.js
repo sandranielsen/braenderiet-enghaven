@@ -16,6 +16,17 @@ export default class ProductDetails {
     }
 
     read() {
+
+        this.productRef.onSnapshot(snapshotData => {
+            let products = [];
+            snapshotData.forEach(doc => {
+                let product = doc.data();
+                product.id = doc.id;
+                products.push(product);
+            });
+            productService.appendProducts(products);
+        });
+
          this.vodkaRef.onSnapshot(snapshotData => {
             let vodkas = [];
             snapshotData.forEach(doc => {
@@ -75,8 +86,13 @@ export default class ProductDetails {
                     <div id="sketch-container"></div>
                     <p class="product_description"></p>
                 </div>
+                <div id="slider-container">
+                <h2>Se resten af vores udvalg<h2>
+                <div id="product-slider"></div>
+                </div>
         
         </section>
     `;
     }
+
 }

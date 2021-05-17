@@ -4,166 +4,82 @@ import {
 
 class ProductService {
     constructor() {
-        this.vodkaRef = firebaseDB.collection("vodka");
-        this.rumRef = firebaseDB.collection("rum");
-        this.brandyRef = firebaseDB.collection("brandy");
+        this.vodkaRef = firebaseDB.collection("vodka").limit(1);
+        this.rumRef = firebaseDB.collection("rum").limit(1);
+        this.brandyRef = firebaseDB.collection("brandy").limit(1);
+        this.productRef = firebaseDB.collection("products").limit(7);
     }
 
     init() {
         
         // initing all products
-         this.vodkaRef.onSnapshot(snapshotData => {
-            let vodkas = [];
+        this.productRef.onSnapshot(snapshotData => {
+            let products = [];
             snapshotData.forEach(doc => {
-                let vodka = doc.data();
-                vodka.id = doc.id;
-                vodkas.push(vodka);
+                let product = doc.data();
+                product.id = doc.id;
+                products.push(product);
             });
-            this.appendVodkas(vodkas);
-        });
-
-        this.rumRef.onSnapshot(snapshotData => {
-            let rums = [];
-            snapshotData.forEach(doc => {
-                let rum = doc.data();
-                rum.id = doc.id;
-                rums.push(rum);
-            });
-            this.appendRums(rums);
-        });
-
-        this.brandyRef.onSnapshot(snapshotData => {
-            let brandys = [];
-            snapshotData.forEach(doc => {
-                let brandy = doc.data();
-                brandy.id = doc.id;
-                brandys.push(brandy);
-            });
-            this.appendBrandys(brandys);
+            this.appendProducts(products);
         });
     }
      
     // appending the products
-    appendVodkas(vodkas) {
+    appendProducts(products) {
         let template = "";
-        for (let vodka of vodkas) {
+        for (let product of products) {
             template += /*html*/ `
-                    <article id="spirit-products" onclick="selectVodka('${vodka.vodkaName}', '${vodka.vodkaSeries}', '${vodka.vodkaAlcohol}', '${vodka.vodkaNotes}', '${vodka.vodkaImage}', '${vodka.vodkaIllustration}', '${vodka.vodkaDescription}' )">
+                    <article id="spirit-products" onclick="selectProduct('${product.name}', '${product.series}', '${product.alcohol}', '${product.notes}', '${product.image}', '${product.illustration}', '${product.description}' )">
                     <div id="product-content">
                     <div id="information-container">
-                    <h1 class="product_title">${vodka.vodkaName}</h1>
+                    <h1 class="product_title">${product.name}</h1>
                     <div id="product-info">
                         <div id="info-element-1">
                         <h5 class="info_title">Produktserie</h5>
-                        <h3 class="product_series">${vodka.vodkaSeries}<h3>
+                        <h3 class="product_series">${product.series}<h3>
                         </div>
                         <div id="info-element">
                         <h5 class="info_title">Alkoholstyrke</h5>
-                        <h1 class="product_strength">${vodka.vodkaAlcohol}</h1>
+                        <h1 class="product_strength">${product.alcohol}</h1>
                         </div>
                         <div id="info-element">
                         <h5 class="info_title">Smag</h5>
-                        <h3 class="product_notes">${vodka.vodkaNotes}</h3>
+                        <h3 class="product_notes">${product.notes}</h3>
                         </div>
                         </div>
                     </div>
                 <div id="image_container"></div>
-                <img src="${vodka.vodkaImage}" class="product_image">
+                <img src="${product.image}" class="product_image">
                 </div>
                 <div id="product-description">
                     <div id="sketch-container">
-                        <img src="${vodka.vodkaIllustration}" class="illustration">
+                        <img src="${product.illustration}" class="illustration">
                     </div>
-                    <p class="product_description">${vodka.vodkaDescription}</p>
+                    <p class="product_description">${product.description}</p>
                 </div>
-
+                <div>
+                <h2>Se resten af vores udvalg<h2>
+                <div id="product-slider"></div>
+                </div>
                 </article>
                 `;
         }
         document.querySelector("#product-list").innerHTML = template;
     }
 
-    appendRums(rums) {
-        let template = "";
-        for (let rum of rums) {
-            template += /*html*/ `
-                    <article id="spirit-products" onclick="selectRum('${rum.rumName}', '${rum.rumSeries}', '${rum.rumAlcohol}', '${rum.rumNotes}', '${rum.rumImage}', '${rum.rumIllustration}', '${rum.rumDescription}' )">
-                    <div id="product-content">
-                    <div id="information-container">
-                    <h1 class="product_title">${rum.rumName}</h1>
-                    <div id="product-info">
-                        <div id="info-element-1">
-                        <h5 class="info_title">Produktserie</h5>
-                        <h3 class="product_series">${rum.rumSeries}<h3>
-                        </div>
-                        <div id="info-element">
-                        <h5 class="info_title">Alkoholstyrke</h5>
-                        <h1 class="product_strength">${rum.rumAlcohol}</h1>
-                        </div>
-                        <div id="info-element">
-                        <h5 class="info_title">Smag</h5>
-                        <h3 class="product_notes">${rum.rumNotes}</h3>
-                        </div>
-                        </div>
-                    </div>
-                <div id="image_container"></div>
-                <img src="${rum.rumImage}" class="product_image">
+    appendProducts(products) {
+        let htmlTemplate = "";
+        for (let product of products) {
+            htmlTemplate += /*html*/ `
+                <div class="preview" onclick="selectProduct('${product.name}', '${product.series}', '${product.alcohol}', '${product.notes}', '${product.image}', '${product.illustration}', '${product.description}')">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h5 class="preview_text">${product.name}</h5>
                 </div>
-                <div id="product-description">
-                    <div id="sketch-container">
-                        <img src="${rum.rumIllustration}" class="illustration">
-                    </div>
-                    <p class="product_description">${rum.rumDescription}</p>
-                </div>
-
-                </article>
-                `;
+                
+          `;
         }
-        document.querySelector("#product-list").innerHTML = template;
+        document.querySelector('#product-slider').innerHTML = htmlTemplate;
     }
-
-    appendBrandys(brandys) {
-        let template = "";
-        for (let brandy of brandys) {
-            template += /*html*/ `
-                    <article id="spirit-products" onclick="selectBrandy('${brandy.brandyName}', '${brandy.brandySeries}', '${brandy.brandyAlcohol}', '${brandy.brandyNotes}', '${brandy.brandyImage}', '${brandy.brandyIllustration}', '${brandy.brandyDescription}' )">
-                    <div id="product-content">
-                    <div id="information-container">
-                    <h1 class="product_title">${brandy.brandyName}</h1>
-                    <div id="product-info">
-                        <div id="info-element-1">
-                        <h5 class="info_title">Produktserie</h5>
-                        <h3 class="product_series">${brandy.brandySeries}<h3>
-                        </div>
-                        <div id="info-element">
-                        <h5 class="info_title">Alkoholstyrke</h5>
-                        <h1 class="product_strength">${brandy.brandyAlcohol}</h1>
-                        </div>
-                        <div id="info-element">
-                        <h5 class="info_title">Smag</h5>
-                        <h3 class="product_notes">${brandy.brandyNotes}</h3>
-                        </div>
-                        </div>
-                    </div>
-                <div id="image_container"></div>
-                <img src="${brandy.brandyImage}" class="product_image">
-                </div>
-                <div id="product-description">
-                    <div id="sketch-container">
-                        <img src="${brandy.brandyIllustration}" class="illustration">
-                    </div>
-                    <p class="product_description">${brandy.brandyDescription}</p>
-                </div>
-
-                </article>
-                `;
-        }
-        document.querySelector("#product-list").innerHTML = template;
-    }
-
-
-
-
 }
 
 const productService = new ProductService();
