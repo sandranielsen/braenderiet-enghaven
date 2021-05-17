@@ -33,18 +33,16 @@ window.showVodka = () => homePage.showVodka();
 window.showRum = () => homePage.showRum();
 window.showBrandy = () => homePage.showBrandy();
 
-window.selectProduct = (name, series, alcohol, notes, image, illustration, description) => {
+window.selectProduct = (name, series, alcohol, image, illustration, description) => {
     let nameInput = document.querySelector('.product_title');
     let seriesInput = document.querySelector('.product_series');
     let alcoholInput = document.querySelector('.product_strength');
-    let notesInput = document.querySelector('.product_notes');
     let imageInput = document.querySelector('#image_container');
     let illustrationInput = document.querySelector('#sketch-container');
     let descriptionInput = document.querySelector('.product_description');
     nameInput.textContent = name;
     seriesInput.textContent = series;
     alcoholInput.textContent = alcohol;
-    notesInput.textContent = notes;
     imageInput.style.backgroundImage = image;
     illustrationInput.style.backgroundImage = illustration;
     descriptionInput.textContent = description;

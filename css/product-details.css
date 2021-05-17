@@ -8,11 +8,12 @@
 #information-container {
     display: flex;
     flex-direction: column;
-    margin-top: 230px;
+    margin-top: 250px;
 }
 
 #product-info {
     display: flex;
+    margin
 }
 
 .product_image {
@@ -22,7 +23,6 @@
 
 .product_title {
     color: white;
-    margin-bottom: 20px;
 }
 
 #info-element {
@@ -49,7 +49,6 @@
     font-style: normal;
     text-transform: uppercase;
     margin-top: 20px;
-    text-align: center;
 }
 
 .product_strength {
@@ -67,7 +66,6 @@
     font-style: normal;
     text-transform: uppercase;
     margin-top: 20px;
-    text-align: center;
 }
 
 #product-description {
