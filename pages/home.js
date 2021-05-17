@@ -4,20 +4,43 @@ import {
 
 export default class HomePage {
     constructor() {
-        this.previewRef = firebaseDB.collection("products").limit(7);
+        this.vodkaRef = firebaseDB.collection("vodka").limit(4);
+        this.rumRef = firebaseDB.collection("rum").limit(4);
+        this.brandyRef = firebaseDB.collection("brandy").limit(4);
         this.template();
         this.read();
     }
 
     read() {
-        this.previewRef.onSnapshot(snapshotData => {
-            let previews = [];
+
+        this.vodkaRef.onSnapshot(snapshotData => {
+            let vodkas = [];
             snapshotData.forEach(doc => {
-                let preview = doc.data();
-                preview.id = doc.id;
-                previews.push(preview);
+                let vodka = doc.data();
+                vodka.id = doc.id;
+                vodkas.push(vodka);
             });
-            this.appendPreviews(previews);
+            this.appendVodkas(vodkas);
+        });
+
+        this.rumRef.onSnapshot(snapshotData => {
+            let rums = [];
+            snapshotData.forEach(doc => {
+                let rum = doc.data();
+                rum.id = doc.id;
+                rums.push(rum);
+            });
+            this.appendRums(rums);
+        });
+
+        this.brandyRef.onSnapshot(snapshotData => {
+            let brandys = [];
+            snapshotData.forEach(doc => {
+                let brandy = doc.data();
+                brandy.id = doc.id;
+                brandys.push(brandy);
+            });
+            this.appendBrandys(brandys);
         });
     }
 
@@ -42,16 +65,21 @@ export default class HomePage {
 
                     <div id="product-container">
                         <ul class="product_types">
-                            <li><button class="product_items" onchange="categorySelected(this.value)">Vodka</button></li>
-                            <li><button class="product_items" onchange="categorySelected(this.value)">Rom</button></li>
-                            <li><button class="product_items" onchange="categorySelected(this.value)">Whisky</button></li>
-                            <li><button class="product_items" onchange="categorySelected(this.value)">Brændevin</button></li>
-                            <li><button class="product_items" onchange="categorySelected(this.value)">Dessertvin</button></li>
-                            <li><button class="product_items" onchange="categorySelected(this.value)">Æblemost</button></li>
+                            <li><button class="product_items" onclick="showVodka()">Vodka</button></li>
+                            <li><button class="product_items" onclick="showRum()">Rom</button></li>
+                            <li><button class="product_items">Whisky</button></li>
+                            <li><button class="product_items" onclick="showBrandy()">Brændevin</button></li>
+                            <li><button class="product_items">Dessertvin</button></li>
+                            <li><button class="product_items">Æblemost</button></li>
                         </ul>
-                        <div id="product-slider"></div>
+                        <div id="sliders">
+                        <div id="vodka-slider"></div>
+                        <div id="rum-slider"></div>
+                        <div id="brandy-slider"></div>
+                        </div>
                     </div>
                 </div>
+    </div>
 
                 <div id="about-container">
                     <img src="./media/gaarden.svg" alt="logo" class="about_img">
@@ -100,20 +128,82 @@ export default class HomePage {
         `;
     }
 
-// appending the product previews
-    appendPreviews(previews) {
+    // appending the product previews
+    
+    appendVodkas(vodkas) {
         let htmlTemplate = "";
-        for (let preview of previews) {
+        for (let vodka of vodkas) {
             htmlTemplate += /*html*/ `
-                <div class="preview" onclick="selectProduct('${preview.name}', '${preview.series}', '${preview.alcohol}', '${preview.notes}', '${preview.image}', '${preview.illustration}', '${preview.description}')">
-                    <img src="${preview.image}" alt="${preview.title}">
-                    <h5 class="preview_text">${preview.name}</h5>
+                <div class="preview" onclick="selectVodka('${vodka.vodkaName}', '${vodka.vodkaSeries}', '${vodka.vodkaAlcohol}', '${vodka.vodkaNotes}', '${vodka.vodkaImage}', '${vodka.vodkaIllustration}', '${vodka.vodkaDescription}')">
+                    <img src="${vodka.vodkaImage}" alt="${vodka.vodkaName}">
+                    <h5 class="preview_text">${vodka.vodkaName}</h5>
                 </div>
                 
           `;
         }
-        document.querySelector('#product-slider').innerHTML = htmlTemplate;
+        document.querySelector('#vodka-slider').innerHTML = htmlTemplate;
     }
-    
+
+    appendRums(rums) {
+        let htmlTemplate = "";
+        for (let rum of rums) {
+            htmlTemplate += /*html*/ `
+                <div class="preview" onclick="selectRum('${rum.rumName}', '${rum.rumSeries}', '${rum.rumAlcohol}', '${rum.rumNotes}', '${rum.rumImage}', '${rum.rumIllustration}', '${rum.rumDescription}')">
+                    <img src="${rum.rumImage}" alt="${rum.rumName}">
+                    <h5 class="preview_text">${rum.rumName}</h5>
+                </div>
+                
+          `;
+        }
+        document.querySelector('#rum-slider').innerHTML = htmlTemplate;
+    }
+
+    appendBrandys(brandys) {
+        let htmlTemplate = "";
+        for (let brandy of brandys) {
+            htmlTemplate += /*html*/ `
+                <div class="preview" onclick="selectBrandy('${brandy.brandyName}', '${brandy.brandySeries}', '${brandy.brandyAlcohol}', '${brandy.brandyNotes}', '${brandy.brandyImage}', '${brandy.brandyIllustration}', '${brandy.brandyDescription}')">
+                    <img src="${brandy.brandyImage}" alt="${brandy.brandyName}">
+                    <h5 class="preview_text">${brandy.brandyName}</h5>
+                </div>
+                
+          `;
+        }
+        document.querySelector('#brandy-slider').innerHTML = htmlTemplate;
+    }
+
+    showVodka() {
+        let x = document.getElementById("vodka-slider");
+        let y = document.querySelectorAll("#rum-slider, #brandy-slider");
+        if (x.style.display === "none") {
+            x.style.display = "flex";
+        } else {
+            x.style.display = "none";
+            y.style.display = "flex";
+        }
+    }
+
+    showRum() {
+        let x = document.getElementById("rum-slider");
+        let y = document.querySelectorAll("#vodka-slider, #brandy-slider");
+        if (x.style.display === "none") {
+            x.style.display = "flex";
+        } else {
+            x.style.display = "none";
+            y.style.display = "none";
+        }
+    }
+
+    showBrandy() {
+        let x = document.getElementById("brandy-slider");
+        let y = document.querySelectorAll("#rum-slider, #vodka-slider");
+        if (x.style.display === "none") {
+            x.style.display = "flex";
+        } else {
+            x.style.display = "none";
+            y.style.display = "none";
+        }
+    }
+
 }
 

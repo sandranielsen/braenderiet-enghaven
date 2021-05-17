@@ -50,8 +50,24 @@ li {
     column-gap: 10%;
 }
 
-#product-slider {
+#vodka-slider {
     display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    margin: 15px 0;
+    scroll-snap-type: x mandatory;
+}
+
+#rum-slider {
+    display: none;
+    flex-direction: row;
+    overflow-x: scroll;
+    margin: 15px 0;
+    scroll-snap-type: x mandatory;
+}
+
+#brandy-slider {
+    display: none;
     flex-direction: row;
     overflow-x: scroll;
     margin: 15px 0;

@@ -10,17 +10,40 @@ export default class ProductDetails {
     constructor() {
         this.template();
         this.productRef = firebaseDB.collection("products");
+        this.vodkaRef = firebaseDB.collection("vodka");
+        this.rumRef = firebaseDB.collection("rum");
+        this.brandyRef = firebaseDB.collection("brandy");
     }
 
     read() {
-        this.productRef.onSnapshot(snapshotData => {
-            let products = [];
+         this.vodkaRef.onSnapshot(snapshotData => {
+            let vodkas = [];
             snapshotData.forEach(doc => {
-                let product = doc.data();
-                product.id = doc.id;
-                products.push(product);
+                let vodka = doc.data();
+                vodka.id = doc.id;
+                vodkas.push(vodka);
             });
-            productService.appendProducts(products);
+            this.appendVodkas(vodkas);
+        });
+
+        this.rumRef.onSnapshot(snapshotData => {
+            let rums = [];
+            snapshotData.forEach(doc => {
+                let rum = doc.data();
+                rum.id = doc.id;
+                rums.push(rum);
+            });
+            this.appendRums(rums);
+        });
+
+        this.brandyRef.onSnapshot(snapshotData => {
+            let brandys = [];
+            snapshotData.forEach(doc => {
+                let brandy = doc.data();
+                brandy.id = doc.id;
+                brandys.push(brandy);
+            });
+            this.appendBrandys(brandys);
         });
     }
 

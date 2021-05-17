@@ -7,8 +7,23 @@
 }
 
 #products-container {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#vodka-container {
+    width: 50%;
+}
+
+#rum-container {
+    width: 50%;
+    background-color: var(--lightgrey);
+}
+
+#brandy-container {
+    width: 50%;
+    background-color: var(--grey);
 }
 
 .spirit_item {
