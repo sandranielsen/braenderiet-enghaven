@@ -2,11 +2,10 @@ import {
      firebaseDB
 } from "../services/firebase_config.js";
 
-import productService from "../services/product-service.js";
 
 export default class ProductsPage {
      constructor() {
-          this.productRef = firebaseDB.collection("products");
+         this.productRef = firebaseDB.collection("products");
           this.vodkaRef = firebaseDB.collection("vodka").limit(1);
           this.rumRef = firebaseDB.collection("rum").limit(1);
           this.brandyRef = firebaseDB.collection("brandy").limit(1);
@@ -77,7 +76,7 @@ export default class ProductsPage {
           let template = "";
           for (let vodka of vodkas) {
                template += /*html*/ `
-          <article class="spirit_item" onclick="selectVodka('${vodka.vodkaName}', '${vodka.vodkaSeries}', '${vodka.vodkaAlcohol}', '${vodka.vodkaNotes}', '${vodka.vodkaImage}', '${vodka.vodkaIllustration}', '${vodka.vodkaDescription}', '${vodka.vodkaSpirit}')"">
+          <article class="spirit_item" onclick="selectVodka('${vodka.vodkaName}', '${vodka.vodkaSeries}', '${vodka.vodkaAlcohol}', '${vodka.vodkaNotes}', '${vodka.vodkaImage}', '${vodka.vodkaIllustration}', '${vodka.vodkaDescription}', '${vodka.vodkaSpirit}')">
                 <div id="spirit-content">
                 <h2 class="spirit-name">${vodka.vodkaSpirit}</h2>
                 <button class="product_btn">Læs mere</button>
@@ -93,7 +92,7 @@ export default class ProductsPage {
           let template = "";
           for (let rum of rums) {
                template += /*html*/ `
-          <article class="spirit_item" onclick="selectRum('${rum.rumName}', '${rum.rumSeries}', '${rum.rumAlcohol}', '${rum.rumNotes}', '${rum.rumImage}', '${rum.rumIllustration}', '${rum.rumDescription}', '${rum.rumSpirit}')"">
+          <article class="spirit_item" onclick="selectRum('${rum.rumName}', '${rum.rumSeries}', '${rum.rumAlcohol}', '${rum.rumNotes}', '${rum.rumImage}', '${rum.rumIllustration}', '${rum.rumDescription}', '${rum.rumSpirit}')">
                 <div id="spirit-content">
                 <h2 class="spirit-name">${rum.rumSpirit}</h2>
                 <button class="product_btn">Læs mere</button>
@@ -109,7 +108,7 @@ export default class ProductsPage {
           let template = "";
           for (let brandy of brandys) {
                template += /*html*/ `
-          <article class="spirit_item" onclick="selectBrandy('${brandy.brandyName}', '${brandy.brandySeries}', '${brandy.brandyAlcohol}', '${brandy.brandyNotes}', '${brandy.brandyImage}', '${brandy.brandyIllustration}', '${brandy.brandyDescription}', '${brandy.brandySpirit}')"">
+          <article class="spirit_item" onclick="selectBrandy('${brandy.brandyName}', '${brandy.brandySeries}', '${brandy.brandyAlcohol}', '${brandy.brandyNotes}', '${brandy.brandyImage}', '${brandy.brandyIllustration}', '${brandy.brandyDescription}', '${brandy.brandySpirit}')">
                 <div id="spirit-content">
                 <h2 class="spirit-name">${brandy.brandySpirit}</h2>
                 <button class="product_btn">Læs mere</button>

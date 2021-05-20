@@ -6,13 +6,10 @@ import {
 
 import productService from "../services/product-service.js";
 
-export default class ProductDetails {
+export default class RumDetails {
     constructor() {
-        this.template();
-        this.productRef = firebaseDB.collection("products");
-        this.vodkaRef = firebaseDB.collection("vodka");
         this.rumRef = firebaseDB.collection("rum");
-        this.brandyRef = firebaseDB.collection("brandy");
+        this.template();
     }
 
     read() {
@@ -27,16 +24,6 @@ export default class ProductDetails {
             productService.appendProducts(products);
         });
 
-         this.vodkaRef.onSnapshot(snapshotData => {
-            let vodkas = [];
-            snapshotData.forEach(doc => {
-                let vodka = doc.data();
-                vodka.id = doc.id;
-                vodkas.push(vodka);
-            });
-            this.appendVodkas(vodkas);
-        });
-
         this.rumRef.onSnapshot(snapshotData => {
             let rums = [];
             snapshotData.forEach(doc => {
@@ -46,22 +33,12 @@ export default class ProductDetails {
             });
             this.appendRums(rums);
         });
-
-        this.brandyRef.onSnapshot(snapshotData => {
-            let brandys = [];
-            snapshotData.forEach(doc => {
-                let brandy = doc.data();
-                brandy.id = doc.id;
-                brandys.push(brandy);
-            });
-            this.appendBrandys(brandys);
-        });
     }
 
     template() {
         document.querySelector("#app").innerHTML += /*html*/ `
-        <section id="product-details" class="page">
-            <div id="product-list">
+        <section id="rum-details" class="page">
+            <div id="rum-list">
                 <div id="product-content">
                     <div id="information-container">
                     <h1 class="product_title"></h1>
@@ -88,11 +65,12 @@ export default class ProductDetails {
                 </div>
                 <div id="slider-container">
                 <h2>Se resten af vores udvalg<h2>
-                <div id="product-slider"></div>
+                <div id="rum-preview"></div>
                 </div>
         
         </section>
     `;
     }
+
 
 }

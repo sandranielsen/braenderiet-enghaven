@@ -14,11 +14,12 @@ export default class NavBar {
                     <a href="#visit" class="nav_link">Besøg os</a>
                 </div>
                 <div id="secondary-nav">
-            <a href="#shop" class="nav_link">Webshop</a>
+            <a href="#shop" class="nav_link">Shop</a>
     </div>
 
       </nav>
     `;
     }
+
 
 }

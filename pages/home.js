@@ -65,10 +65,10 @@ export default class HomePage {
 
                     <div id="product-container">
                         <ul class="product_types">
-                            <li><button class="product_items" onclick="showVodka()">Vodka</button></li>
-                            <li><button class="product_items" onclick="showRum()">Rom</button></li>
+                            <li><button class="product_items" id="vodka-btn" onclick="showVodka()">Vodka</button></li>
+                            <li><button class="product_items" id="rum-btn" onclick="showRum()">Rom</button></li>
                             <li><button class="product_items">Whisky</button></li>
-                            <li><button class="product_items" onclick="showBrandy()">Brændevin</button></li>
+                            <li><button class="product_items" id="brandy-btn" onclick="showBrandy()">Brændevin</button></li>
                             <li><button class="product_items">Dessertvin</button></li>
                             <li><button class="product_items">Æblemost</button></li>
                         </ul>
@@ -175,33 +175,39 @@ export default class HomePage {
     showVodka() {
         let x = document.getElementById("vodka-slider");
         let y = document.querySelectorAll("#rum-slider, #brandy-slider");
+        let nav = document.getElementById("vodka-btn");
         if (x.style.display === "none") {
             x.style.display = "flex";
+            nav.style.color = "var(--green)";
         } else {
             x.style.display = "none";
-            y.style.display = "flex";
+             nav.style.color = "var(--black)"
         }
     }
 
     showRum() {
         let x = document.getElementById("rum-slider");
         let y = document.querySelectorAll("#vodka-slider, #brandy-slider");
+        let nav = document.getElementById("rum-btn");
         if (x.style.display === "none") {
             x.style.display = "flex";
+            nav.style.color = "var(--green)";
         } else {
             x.style.display = "none";
-            y.style.display = "none";
+             nav.style.color = "var(--black)"
         }
     }
 
     showBrandy() {
         let x = document.getElementById("brandy-slider");
         let y = document.querySelectorAll("#rum-slider, #vodka-slider");
+        let nav = document.getElementById("brandy-btn");
         if (x.style.display === "none") {
             x.style.display = "flex";
+            nav.style.color = "var(--green)";
         } else {
             x.style.display = "none";
-            y.style.display = "none";
+             nav.style.color = "var(--black)"
         }
     }
 
