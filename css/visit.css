@@ -19,7 +19,7 @@
 /* parallax effect - source: https://www.w3schools.com/howto/howto_css_parallax.asp */
 #info-container {
     position: relative;
-    background-image: url(/media/besøg-os-2.jpg);
+    background-image: url(./media/besøg-os-2.jpg);
     min-height: 70vh;
     background-attachment: fixed;
     background-position: center;
