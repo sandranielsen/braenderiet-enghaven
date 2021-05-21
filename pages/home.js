@@ -204,7 +204,6 @@ export default class HomePage {
         let nav = document.getElementById("brandy-btn");
         if (x.style.display === "none") {
             x.style.display = "flex";
-            nav.style.color = "var(--green)";
         } else {
             x.style.display = "none";
              nav.style.color = "var(--black)"

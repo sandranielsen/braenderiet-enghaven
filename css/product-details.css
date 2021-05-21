@@ -1,5 +1,5 @@
 #product-content {
-    padding: 100px 100px 0 100px;
+    padding: 100px 0 0;
     background: linear-gradient(to bottom, var(--green) 50%, var(--white) 0%);
     display: flex;
     justify-content: space-around;
@@ -8,7 +8,7 @@
 #information-container {
     display: flex;
     flex-direction: column;
-    margin-top: 250px;
+    margin: 250px 0 0 100px;
 }
 
 #product-info {
@@ -33,6 +33,7 @@
     align-items: center;
     text-align: center;
     border-left: 1px var(--black) solid;
+    width: 200px;
 }
 
 #info-element-1 {
@@ -42,6 +43,12 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 200px;
+    hyphens: auto;
+}
+
+.info_title {
+    font-size: 32px;
 }
 
 .product_series {
